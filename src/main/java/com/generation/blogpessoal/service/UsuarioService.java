@@ -34,7 +34,7 @@ public class UsuarioService {
 			return Optional.empty();
 
 		if (usuario.getFoto().isEmpty())
-			usuario.setFoto("[URL da foto padrão]");
+			usuario.setFoto("https://i0.wp.com/www.repol.copl.ulaval.ca/wp-content/uploads/2019/01/default-user-icon.jpg");
 
 		usuario.setSenha(criptografarSenha(usuario.getSenha()));
 
@@ -48,10 +48,10 @@ public class UsuarioService {
 			Optional<Usuario> buscaUsuario = usuarioRepository.findByUsuario(usuario.getUsuario());
 
 			if ((buscaUsuario.isPresent()) && (buscaUsuario.get().getId() != usuario.getId()))
-				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já existe!", null);
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O usuário informado já existe!", null);
 
 			if (usuario.getFoto().isEmpty())
-				usuario.setFoto("[URL da foto padrão]");
+				usuario.setFoto("https://i0.wp.com/www.repol.copl.ulaval.ca/wp-content/uploads/2019/01/default-user-icon.jpg");
 
 			usuario.setSenha(criptografarSenha(usuario.getSenha()));
 
